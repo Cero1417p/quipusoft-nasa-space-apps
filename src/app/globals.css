@@ -1,26 +1,65 @@
+/* app/globals.css ------------------------------------------ */
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* =========  MIGRACIÓN DESDE VITE  ========= */
+@theme {
+  /* colores / efectos que usabas en app.css */
+  --color-logo-shadow: #646cffaa;
+  --color-logo-react: #61dafbaa;
+  --color-read-docs: #888;
+
+  /* espaciados / tamaños */
+  --spacing-card-p: 2em;
+  --spacing-logo: 6em;
+  --spacing-logo-pad: 1.5em;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ---------  RESET BÁSICO (opcional)  --------- */
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ---------  CLASES PROPIAS (como en Vite)  --------- */
+/* contenedor centrado (sustituye a #root) */
+.app-container {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* logo con drop-shadow animado */
+.logo {
+  height: var(--spacing-logo);
+  padding: var(--spacing-logo-pad);
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em var(--color-logo-shadow));
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em var(--color-logo-react));
+}
+
+/* animación de giro (solo si el usuario no prefiere reduced-motion) */
+@media (prefers-reduced-motion: no-preference) {
+  .logo-spin {
+    animation: spin 20s linear infinite;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* card y texto auxiliar */
+.card {
+  padding: var(--spacing-card-p);
+}
+.read-the-docs {
+  color: var(--color-read-docs);
 }
