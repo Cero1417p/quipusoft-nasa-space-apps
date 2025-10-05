@@ -8,7 +8,7 @@ export function LandingPage() {
       <header className="bg-white shadow-sm px-6 py-4 flex justify-between items-center">
         <div className="flex items-center space-x-2">
           <Cloud className="text-blue-500" />
-          <span className="font-bold text-lg">Weather Odds</span>
+          <span className="font-bold text-lg">¿Lloverá en mi desfile?</span>
         </div>
         <Link
           href="/dashboard"

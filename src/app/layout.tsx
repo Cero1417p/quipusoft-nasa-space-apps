@@ -1,5 +1,5 @@
 import './globals.css'   // tu archivo Tailwind
-export const metadata = { title: 'Weather Odds', description: 'NASA Space Apps' }
+export const metadata = { title: 'Climatic', description: 'NASA Space Apps' }
 
 export default function RootLayout({
   children,
