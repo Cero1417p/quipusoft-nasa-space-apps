@@ -1,24 +1,24 @@
-'use client'
-import { useState } from 'react'
-import { Sidebar } from '@/components/ui/Sidebar'
-import { Navbar } from '@/components/ui/Navbar'
-import { MobileBottomNav } from '@/components/ui/MobileBottomNav'
-import { NewQuerySection } from '@/components/sections/NewQuerySection'
-import { ResultsSection } from '@/components/sections/ResultsSection'
-import { VariablesSection } from '@/components/sections/VariablesSection'
-import { DownloadSection } from '@/components/sections/DownloadSection'
+"use client";
+import { useState } from "react";
+import { Sidebar } from "@/components/ui/Sidebar";
+import { Navbar } from "@/components/ui/Navbar";
+import { MobileBottomNav } from "@/components/ui/MobileBottomNav";
+import { NewQuerySection } from "@/components/sections/NewQuerySection";
+import { ResultsSection } from "@/components/sections/ResultsSection";
+import { VariablesSection } from "@/components/sections/VariablesSection";
+import { DownloadSection } from "@/components/sections/DownloadSection";
 
-export type Section = 'new-query' | 'results' | 'variables' | 'download'
+export type Section = "new-query" | "results" | "variables" | "download";
 
 export default function Dashboard() {
-  const [section, setSection] = useState<Section>('new-query')
+  const [section, setSection] = useState<Section>("new-query");
 
   const SectionComponent = {
-    'new-query': NewQuerySection,
+    "new-query": NewQuerySection,
     results: ResultsSection,
     variables: VariablesSection,
     download: DownloadSection,
-  }[section]
+  }[section];
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
@@ -31,5 +31,5 @@ export default function Dashboard() {
       </div>
       <MobileBottomNav currentSection={section} setSection={setSection} />
     </div>
-  )
+  );
 }
