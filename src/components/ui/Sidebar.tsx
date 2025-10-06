@@ -1,11 +1,12 @@
 'use client'
-import { Cloud, Plus, Sliders, Download, ArrowLeft } from 'lucide-react'
+
 import Link from 'next/link'
+import { Cloud, Calendar, MapPin, Droplets, Sun } from 'lucide-react'
 
 const menu = [
-  { id: 'new-query', label: 'New Query', icon: Plus },
-  { id: 'variables', label: 'Select Variables', icon: Sliders },
-  { id: 'download', label: 'Download Data', icon: Download },
+  { id: 'new-query', label: 'Check Weather', icon: Droplets },
+  { id: 'variables', label: 'Select Variables', icon: Calendar },
+  { id: 'download', label: 'Download Data', icon: MapPin },
 ]
 
 export function Sidebar({
@@ -16,33 +17,46 @@ export function Sidebar({
   setSection: (s: any) => void
 }) {
   return (
-    <aside className="bg-white shadow-md w-64 p-4 hidden md:flex flex-col">
-      <div className="flex items-center space-x-2 mb-8">
-        <Cloud className="text-blue-500" />
-        <span className="font-bold text-lg">Will it Rain ?s</span>
+    <aside className="relative w-64 hidden md:flex flex-col bg-gradient-to-b from-slate-800 to-slate-900 text-white border-r border-slate-700">
+
+      {/* Header */}
+      <div className="flex items-center space-x-3 mb-8 px-6 py-6 border-b border-slate-700">
+        <Sun className="w-6 h-6 text-sky-400" />
+        <span className="font-semibold text-lg tracking-wide">Cajamarca Weather</span>
       </div>
-      <nav className="flex-1 space-y-2">
+
+      {/* Navigation */}
+      <nav className="flex-1 px-4 space-y-2">
         {menu.map((m) => {
           const Icon = m.icon
+          const isActive = currentSection === m.id
+
           return (
             <button
               key={m.id}
               onClick={() => setSection(m.id)}
-              className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg font-medium ${
-                currentSection === m.id
-                  ? 'bg-blue-50 text-blue-600'
-                  : 'hover:bg-gray-100'
+              className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg font-medium transition-all duration-200 ${
+                isActive
+                  ? 'bg-sky-600 text-white shadow-md'
+                  : 'hover:bg-slate-700 text-slate-300 hover:text-white'
               }`}
             >
-              <Icon size={20} />
+              <Icon
+                size={20}
+                className={`${isActive ? 'text-white' : 'text-slate-400'}`}
+              />
               <span>{m.label}</span>
             </button>
           )
         })}
       </nav>
-      <Link href="/" className="flex items-center space-x-2 text-sm text-gray-500">
-        <ArrowLeft size={16} />
-        <span>Back to home</span>
+
+      {/* Back to home */}
+      <Link
+        href="/"
+        className="flex items-center space-x-2 px-6 py-4 text-sm text-slate-400 hover:text-white transition-colors border-t border-slate-700"
+      >
+        ← Back to home
       </Link>
     </aside>
   )
